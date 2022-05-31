@@ -1,0 +1,45 @@
+@import "./../../../css/mixins/formSpaces";
+body{
+  background: url("../../../imgs/timo-c-dinger-43m51FRyG88-unsplash.jpg") center / cover no-repeat;
+}
+#root{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  margin-top: 40px;
+  display: grid;
+  grid-template-rows: 150px 50px;
+  grid-template-columns: 1fr;
+  grid-row-gap: 30px;
+  text-align: center;
+
+
+  img{
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  h1{
+    font-size: 28px;
+  }
+}
+
+form, .success_infos{
+  margin-top: 80px;
+}
+
+.success_infos{
+  @include formSpaces();
+  p{
+    text-align: center;
+    margin: 20px 0;
+    &:nth-child(2){
+      margin: 30px 0;
+    }
+  }
+  div{
+    text-align: center;
+  }
+}
