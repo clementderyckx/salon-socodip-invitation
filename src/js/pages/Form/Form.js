@@ -2,7 +2,7 @@ import React from "react";
 import './form.css'
 import SubscriptionForm from "../../components/Subscriptionform/Subscriptionform";
 import FormSubtitle from "../../components/form/FormSubtitle";
-import logo from "./../../../imgs/logo-socodip.png"
+import logoSocodip from "./../../../imgs/logo-socodip2021.svg"
 import {Fragment} from "react";
 import DownloadInvitationButton from "../../components/DownloadInvitationButton";
 import Utils from "../../Utils";
@@ -49,8 +49,12 @@ class Form extends React.Component {
         return (
             <Fragment>
                 <div className="title">
-                    <img src={logo}/>
                     <h1>{this.state.title}</h1>
+                    <div className="title-date">
+                        <p className="date">Jeudi 15 Septembre 2022 à Gachy (02)</p>
+                        <p className="hours">à partir de 8h15</p>
+                    </div>
+
                     <FormSubtitle submitted={this.state.submitted} error={this.state.error} />
                 </div>
 

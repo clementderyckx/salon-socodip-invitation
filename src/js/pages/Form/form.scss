@@ -1,6 +1,8 @@
 @import "./../../../css/mixins/formSpaces";
+@import "./../../../css/assets/colours";
+
 body{
-  background: url("../../../imgs/timo-c-dinger-43m51FRyG88-unsplash.jpg") center / cover no-repeat;
+  background: url("./../../../imgs/bg.jpg") center / cover no-repeat;
 }
 #root{
   display: flex;
@@ -8,9 +10,8 @@ body{
   align-items: center;
 }
 .title{
-  margin-top: 40px;
+  margin-top: 60px;
   display: grid;
-  grid-template-rows: 150px 50px;
   grid-template-columns: 1fr;
   grid-row-gap: 30px;
   text-align: center;
@@ -22,6 +23,7 @@ body{
     border-radius: 10px;
   }
   h1{
+    color: $purple;
     font-size: 28px;
   }
 }
