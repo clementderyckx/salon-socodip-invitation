@@ -22,17 +22,26 @@ body {
 }
 .title h1 {
   color: #a00f9f;
-  font-size: 28px;
+  font-size: 54px;
+  font-weight: bold;
+  font-family: "Aileron SemiBold", sans-serif;
 }
 
-form, .success_infos {
+.subtitle {
+  font-size: 36px;
+  font-family: "Aileron", sans-serif;
+}
+.subtitle .hours {
+  font-family: "Aileron Light", sans-serif;
+  font-size: 34px;
+}
+
+.success_infos {
   margin-top: 80px;
 }
 
 .success_infos {
-  width: 60%;
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
+  width: 100%;
   padding: 30px;
 }
 .success_infos p {

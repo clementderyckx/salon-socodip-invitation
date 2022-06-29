@@ -2,10 +2,14 @@ import React from "react";
 import './form.css'
 import SubscriptionForm from "../../components/Subscriptionform/Subscriptionform";
 import FormSubtitle from "../../components/form/FormSubtitle";
-import logoSocodip from "./../../../imgs/logo-socodip2021.svg"
 import {Fragment} from "react";
 import DownloadInvitationButton from "../../components/DownloadInvitationButton";
 import Utils from "../../Utils";
+
+// Images
+import logoSocodip from "./../../../imgs/logo-socodip2021.svg";
+import logoGrandeurNature from "./../../../imgs/logo-grandeur-nature.svg";
+
 class Form extends React.Component {
 
     constructor(props) {
@@ -50,8 +54,8 @@ class Form extends React.Component {
             <Fragment>
                 <div className="title">
                     <h1>{this.state.title}</h1>
-                    <div className="title-date">
-                        <p className="date">Jeudi 15 Septembre 2022 à Gachy (02)</p>
+                    <div className="subtitle">
+                        <p className="date">Jeudi 15 Septembre 2022 à Gauchy (02)</p>
                         <p className="hours">à partir de 8h15</p>
                     </div>
 

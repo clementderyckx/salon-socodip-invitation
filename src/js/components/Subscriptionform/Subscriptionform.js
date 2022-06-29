@@ -1,12 +1,9 @@
 import React from "react";
 import './subscriptionForm.css';
-import TextInput from "../form/TextInput";
-import EmailInput from "../form/EmailInput";
-import PhoneInput from "../form/PhoneInput";
+import Input from "../form/Input";
 import SelectInput from "../form/SelectInput";
 import Contact from "../../classes/Contact";
 import DownloadInvitationButton from "../DownloadInvitationButton";
-import {logDOM} from "@testing-library/react";
 
 class SubscriptionForm extends React.Component{
 
@@ -89,38 +86,42 @@ class SubscriptionForm extends React.Component{
         console.log(JSON.stringify(contact))
     }
 
+
     render() {
         return (
-            <form onSubmit={this.submit}>
+            <div className="form-container">
+                <form onSubmit={this.submit}>
 
-                <div className="form-group">
-                    <TextInput label="Prénom :" name="firstname" value={this.state.firstname} handleChange={this.handleChange} />
+                    <div className="form-group">
+                        <Input type="text" label="Prénom :" name="firstname" value={this.state.firstname} handleChange={this.handleChange} />
 
-                    <TextInput label="Nom :" name="lastname" value={this.state.lastname} handleChange={this.handleChange} />
-                </div>
+                        <Input type="text" position="end" label="Nom :" name="lastname" value={this.state.lastname} handleChange={this.handleChange}/>
+                    </div>
 
-                <div className="form-group">
-                    <TextInput label="Entreprise :" name="company" value={this.state.company} handleChange={this.handleChange} />
+                    <div className="form-group">
+                        <Input type="text" label="Entreprise :" name="company" value={this.state.company} handleChange={this.handleChange} />
 
-                    <EmailInput label="Adresse mail :" name="email" value={this.state.email} handleChange={this.handleChange} />
-                </div>
+                        <Input type="email" position="end" label="Adresse mail :" name="email" value={this.state.email} handleChange={this.handleChange}/>
+                    </div>
 
-                <div className="form-group">
-                    <PhoneInput label="N° de téléphone :" name="phone" value={this.state.phone} onChange={this.handleChange} />
+                    <div className="form-group">
+                        <Input type="phone" label="N° de téléphone :" name="phone" value={this.state.phone} handleChange={this.handleChange}/>
 
-                    {/*<TextInput label="Ville :" name="city" value={this.state.company} handleChange={this.handleChange} />*/}
+                        {/*<TextInput label="Ville :" name="city" value={this.state.company} handleChange={this.handleChange} />*/}
 
-                    <SelectInput label="department" name="department" value={this.state.department} onChange={this.handleChange} >
-                        {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}
-                    </SelectInput>
-                </div>
+                        <SelectInput position="end" label="department" name="department" value={this.state.department} onChange={this.handleChange}>
+                            {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}
+                        </SelectInput>
+                    </div>
 
 
-                <div className="form-group">
-                    <input type="submit" value='Envoyer'/>
-                </div>
+                    <div className="form-submit">
+                        <input type="submit" value='Envoyer'/>
+                    </div>
 
-            </form>
+                </form>
+            </div>
+
         )
     }
 

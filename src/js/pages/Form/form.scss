@@ -24,11 +24,23 @@ body{
   }
   h1{
     color: $purple;
-    font-size: 28px;
+    font-size: 54px;
+    font-weight: bold;
+    font-family: 'Aileron SemiBold', sans-serif;
+  }
+
+}
+
+.subtitle{
+  font-size: 36px;
+  font-family: 'Aileron', sans-serif;
+  .hours{
+    font-family: "Aileron Light", sans-serif;
+    font-size: 34px;
   }
 }
 
-form, .success_infos{
+.success_infos{
   margin-top: 80px;
 }
 
