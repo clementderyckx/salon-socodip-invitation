@@ -10,13 +10,13 @@ class SelectInput extends React.Component{
         this.value = props.firstname;
         this.handleChange = props.handleChange
         this.options = props.children;
-        console.log(props.children)
         this.getOptionsElements()
 
     }
 
     getOptionsElements(){
         const elements = [];
+        elements.push(<option value="" defaultValue key=""></option>);
         this.options.forEach( option => {
             const value = (option.split('-')[0].includes(' ')) ? option.split('-')[0].replaceAll(' ', '') : option.split('-')[0];
             elements.push(<option value={value} key={value}>{option}</option>)
@@ -28,9 +28,9 @@ class SelectInput extends React.Component{
         const options = this.getOptionsElements();
         const elementClassName = (this.position === "end") ? "form-label flex-end" : "form-label";
         return (
-            <label htmlFor="department" className={elementClassName}>
+            <label htmlFor={this.name} className={elementClassName}>
                 <span className="label-text">{this.label}</span>
-                <select className="form-input">
+                <select className="form-input" id="department" name={this.name}>
                     {options.map(option => option)}
                 </select>
             </label>

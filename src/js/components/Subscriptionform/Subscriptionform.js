@@ -1,9 +1,13 @@
+// TODO :
+// Select Input avec une premiére selection vide.
+
 import React from "react";
 import './subscriptionForm.css';
 import Input from "../form/Input";
 import SelectInput from "../form/SelectInput";
 import Contact from "../../classes/Contact";
 import DownloadInvitationButton from "../DownloadInvitationButton";
+import ValidationForm from "../../classes/ValidationForm";
 
 class SubscriptionForm extends React.Component{
 
@@ -59,38 +63,113 @@ class SubscriptionForm extends React.Component{
         this.props.submit(value, res);
     }
 
-    submit(event){
-        event.preventDefault();
-        const contact = new Contact(this.state);
-        const result = this.postContact(contact)
-            .then(postResult => {
-                if(postResult === 200) {
-                    this.returnSubmit(true, {
-                        contact: contact,
-                        response: postResult
-                    })
-                } else if (postResult === 400){
-                    this.returnSubmit(false, {
-                        contact: contact,
-                        response: postResult
-                    })
-                } else {
-                    this.returnSubmit(false, {
-                        contact: contact,
-                        response: postResult
-                    })
-                }
-            })
-            .catch(e => console.log(e));
 
-        console.log(JSON.stringify(contact))
+    /**
+     * Return a classified object with each inputs
+     * @returns {{firstname: Element, phone: Element, company: Element, department: Element, email: Element, lastname: Element}}
+     */
+    getSubscriptionInputs(){
+        return {
+            firstname: document.querySelector('form[name="subscription-form"] input[name="firstname"]'),
+            lastname: document.querySelector('form[name="subscription-form"] input[name="lastname"]'),
+            company: document.querySelector('form[name="subscription-form"] input[name="company"]'),
+            email: document.querySelector('form[name="subscription-form"] input[name="email"]'),
+            phone: document.querySelector('form[name="subscription-form"] input[name="phone"]'),
+            department: document.querySelector('form[name="subscription-form"] select[name="department"]'),
+        }
     }
 
+    /**
+     * Returns an array containing errors of the subscription form
+     * @returns {[{error}]}
+     */
+    getFormErrors(){
+        let errors = [];
+        // All inputs in a single array
+        const allInputs = document.querySelectorAll('form[name="subscription-form"] .form-input');
+        // All inputs in a classified object
+        const inputs = this.getSubscriptionInputs();
+
+        // Checks if all inputs are filled
+        allInputs.forEach(input => ValidationForm.noEmptyInput(input, errors));
+
+        // Check if inputs required does have minimum characters
+        ValidationForm.minCharactersInput(2, inputs.firstname, errors);
+        ValidationForm.minCharactersInput(2, inputs.lastname, errors);
+        ValidationForm.minCharactersInput(2, inputs.company, errors);
+
+        // Check if the email value is right
+        ValidationForm.validEmailInput(inputs.email, errors);
+
+        return errors;
+    }
+
+
+    /**
+     * Insert the right error message to the right input. If input is valid, generates a success message and attaches it to the input.
+     * @param errors
+     * @param allInputs
+     */
+    showValidationMessages(errors, allInputs){
+        errors.forEach(error => {
+            const element = (error.input === 'department') ? document.querySelector(`form[name="subscription-form"] select[name="${error.input}"]`) : document.querySelector(`form[name="subscription-form"] input[name="${error.input}"]`);
+            const parentElement = element.parentElement;
+            if(!parentElement.querySelector('.error-form')){
+                const errorElement = ValidationForm.createValidationMessage({ type: 'error', message: error.message });
+                parentElement.appendChild(errorElement);
+            }
+        })
+
+        allInputs.forEach(input => {
+            const parentElement = input.parentElement;
+            if (!parentElement.querySelector('span[class^="validation-message"]')){
+                const successElement = ValidationForm.createValidationMessage({ type: 'success', message: 'La valeur spécifiée est valide' });
+                parentElement.appendChild(successElement);
+            }
+        })
+    }
+
+    validateForm(){
+        const inputsArr = document.querySelectorAll('form[name="subscription-form"] .form-input');
+        ValidationForm.cleanInputsMessages(inputsArr);
+        const errors = this.getFormErrors();
+        this.showValidationMessages(errors, inputsArr);
+
+        return (errors.length === 0)
+    }
+
+    submit(event){
+        event.preventDefault();
+        const isValid = this.validateForm();
+        console.log(`isValid : ${isValid}`);
+        if (isValid){
+            console.log(`Form is Valid !!`)
+            const contact = new Contact(this.state);
+            const result = this.postContact(contact)
+                .then(postResult => {
+                    if(postResult === 200) {
+                        this.returnSubmit(true, {
+                            contact: contact,
+                            response: postResult
+                        })
+                    } else {
+                        this.returnSubmit(false, {
+                            contact: contact,
+                            response: postResult
+                        })
+                    }
+                })
+                .catch(e => console.log(e));
+
+            console.log(JSON.stringify(contact))
+        }
+
+    }
 
     render() {
         return (
             <div className="form-container">
-                <form onSubmit={this.submit}>
+                <form onSubmit={this.submit} name="subscription-form">
 
                     <div className="form-group">
                         <Input type="text" label="Prénom :" name="firstname" value={this.state.firstname} handleChange={this.handleChange} />
