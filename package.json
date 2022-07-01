@@ -2,7 +2,7 @@
   "name": "ui-qrcodeapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://clementderyckx.github.io/",
+  "homepage": "https://clementderyckx.github.io/salon-socodip-invitation",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
