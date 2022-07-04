@@ -1,4 +1,4 @@
-@import "./../../../css/mixins/formSpaces";
+@import "./../../../css/mixins/mixins";
 @import "./../../../css/assets/colours";
 
 body{
@@ -56,5 +56,9 @@ body{
   div{
     text-align: center;
   }
+}
+
+.content-container{
+  @include contentContainer()
 }
 

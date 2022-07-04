@@ -180,37 +180,36 @@ class SubscriptionForm extends React.Component{
 
     render() {
         return (
-            <div className="form-container">
-                <form onSubmit={this.submit} name="subscription-form">
 
-                    <div className="form-group">
-                        <Input type="text" label="Prénom :" name="firstname" value={this.state.firstname} handleChange={this.handleChange} />
+            <form onSubmit={this.submit} name="subscription-form">
 
-                        <Input type="text" position="end" label="Nom :" name="lastname" value={this.state.lastname} handleChange={this.handleChange}/>
-                    </div>
+                <div className="form-group">
+                    <Input type="text" label="Prénom :" name="firstname" value={this.state.firstname} handleChange={this.handleChange} />
 
-                    <div className="form-group">
-                        <Input type="text" label="Entreprise :" name="company" value={this.state.company} handleChange={this.handleChange} />
+                    <Input type="text" position="end" label="Nom :" name="lastname" value={this.state.lastname} handleChange={this.handleChange}/>
+                </div>
 
-                        <Input type="email" position="end" label="Adresse mail :" name="email" value={this.state.email} handleChange={this.handleChange}/>
-                    </div>
+                <div className="form-group">
+                    <Input type="text" label="Entreprise :" name="company" value={this.state.company} handleChange={this.handleChange} />
 
-                    <div className="form-group">
-                        <Input type="phone" label="N° de téléphone :" name="phone" value={this.state.phone} handleChange={this.handleChange}/>
+                    <Input type="email" position="end" label="Adresse mail :" name="email" value={this.state.email} handleChange={this.handleChange}/>
+                </div>
 
-                        <Input type="number" label="Code Postal" name="postCode" value={this.state.postCode}/>
-                        {/*<SelectInput position="end" label="department" name="department" value={this.state.department} onChange={this.handleChange}>*/}
-                        {/*    {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}*/}
-                        {/*</SelectInput>*/}
-                    </div>
+                <div className="form-group">
+                    <Input type="phone" label="N° de téléphone :" name="phone" value={this.state.phone} handleChange={this.handleChange}/>
+
+                    <Input type="number" label="Code Postal" name="postCode" value={this.state.postCode}/>
+                    {/*<SelectInput position="end" label="department" name="department" value={this.state.department} onChange={this.handleChange}>*/}
+                    {/*    {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}*/}
+                    {/*</SelectInput>*/}
+                </div>
 
 
-                    <div className="form-submit">
-                        <input type="submit" value='Envoyer'/>
-                    </div>
+                <div className="form-submit">
+                    <input type="submit" value='Envoyer'/>
+                </div>
 
-                </form>
-            </div>
+            </form>
 
         )
     }

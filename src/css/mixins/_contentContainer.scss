@@ -1,0 +1,11 @@
+@import "../assets/colours";
+@mixin contentContainer($color: $purple){
+  width: 60%;
+  margin: 40px auto 0px auto;
+  border: 2px solid $purple;
+  border-radius: 12px;
+  padding: 50px 60px 40px 60px;
+  background-color: rgba(#FFF, 0.8);
+  box-shadow: 4px 4px 8px rgba(#000, 0.3);
+
+}

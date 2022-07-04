@@ -3,16 +3,9 @@
 }
 
 .form-container {
-  width: 60%;
-  margin: 40px auto 0px auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #a00f9f;
-  border-radius: 12px;
-  padding: 20px 30px 10px 30px;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
 
@@ -21,7 +14,6 @@ form {
   grid-template-rows: repeat(3, 70px) 60px;
   grid-row-gap: 30px;
   width: 100%;
-  padding: 30px;
 }
 
 .form-group {

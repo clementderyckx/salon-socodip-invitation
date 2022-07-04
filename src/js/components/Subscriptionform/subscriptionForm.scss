@@ -1,6 +1,4 @@
-@import "../../../css/mixins/formSpaces";
-@import "./../../../css/mixins/validation";
-@import "../../../css/assets/colours";
+@import "../../../css/mixins/mixins";
 
 .flex-end{
   justify-content: flex-end;
@@ -9,16 +7,10 @@
 // Subscription Form global styles
 
 .form-container{
-  width: 60%;
-  margin: 40px auto 0px auto;
+  //@include contentContainer();
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid $purple;
-  border-radius: 12px;
-  padding: 20px 30px 10px 30px;
-  background-color: rgba(#FFF, 0.8);
-  box-shadow: 4px 4px 8px rgba(#000, 0.3);
   z-index: 10;
 }
 
@@ -26,7 +18,8 @@ form{
   display: grid;
   grid-template-rows: repeat(3, 70px) 60px;
   grid-row-gap: 30px;
-  @include formSpaces();
+  width: 100%;
+  //@include formSpaces();
 }
 
 .form-group{

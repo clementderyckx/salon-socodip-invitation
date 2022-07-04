@@ -3,6 +3,7 @@ import './form.css'
 import SubscriptionForm from "../../components/Subscriptionform/Subscriptionform";
 import FormSubtitle from "../../components/Form/FormSubtitle";
 import Footer from "../../components/Footer/Footer";
+import SubmitValidationMessage from "../../components/SubmitValidationMessage/SubmitValidationMessage";
 import {Fragment} from "react";
 import DownloadInvitationButton from "../../components/DownloadInvitationButton";
 import Utils from "../../Utils";
@@ -17,6 +18,7 @@ class Form extends React.Component {
             submitted: false,
             error: 0,
             imgFilename: '',
+            response: '',
         }
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -25,15 +27,15 @@ class Form extends React.Component {
     handleSubmit(value, res){
         const filename = `${res.contact.company}-${res.contact.lastname}-${res.contact.firstname}.svg`;
         this.setState({submitted: value})
-        if(value === true) {
-            this.setState({title: "Votre inscription à bien été prise en compte", imgFilename: Utils.clearString(filename), contact: res.contact})
+        if(value === true && res.response === 200) {
+            this.setState({title: "Votre inscription à bien été prise en compte", response: 200 , imgFilename: Utils.clearString(filename), contact: res.contact})
         } else if(res.response === 400){
-            this.setState({title: "Le contact est déjà inscrit au salon.", error: 1, imgFilename: Utils.clearString(filename), contact: res.contact})
+            this.setState({response: 400, error: 1, imgFilename: Utils.clearString(filename), contact: res.contact})
         }
         else {
             this.setState({error: 2})
         }
-        setTimeout(() => console.log(this.state.submitted, this.state.imgFilename, this.state.title), 500)
+        // setTimeout(() => console.log(this.state.submitted, this.state.imgFilename, this.state.title), 500)
     }
 
     subtitle(){
@@ -47,22 +49,23 @@ class Form extends React.Component {
     }
 
     render() {
+        const containerClassName = (this.state.submitted === false && this.state.error != 1) ? "content-container form-container" : "content-container";
         return (
             <Fragment>
                 <header className="title">
                     <h1>{this.state.title}</h1>
                     <div className="subtitle">
                         <p className="date">Jeudi 15 Septembre 2022 à Gauchy (02)</p>
-                        <p className="hours">à partir de 8h15</p>
+                        <p className="hours">à partir de 8h30</p>
                     </div>
-                    <FormSubtitle submitted={this.state.submitted} error={this.state.error} />
                 </header>
 
+                <div className={containerClassName}>
 
-                {(this.state.submitted === false && this.state.error != 1) ? <SubscriptionForm submit={this.handleSubmit} isSubmit={this.state.submitted}/> : null}
+                    {(this.state.submitted === false && this.state.error != 1) ? <SubscriptionForm submit={this.handleSubmit} isSubmit={this.state.submitted}/> : null}
+                    <SubmitValidationMessage submitted={this.state.submitted} error={this.state.error} response={this.state.response} />
 
-                {(this.state.submitted === true ) ? (<div className="success_infos"> <p className="text_success">Merci de vous êtes inscrit. Nous vous attendons avec impatience le 23 septembre</p> </div>) : null}
-
+                </div>
 
                 <Footer />
 
