@@ -1,4 +1,9 @@
+// Comment on node
 import Utilities from "./Utilities";
+/* Uncomment on node
+const Utilities = require('./Utilities');
+ */
+
 class ValidationForm{
 
     /**
@@ -29,13 +34,87 @@ class ValidationForm{
         return (input.value.length === 0);
     }
 
+    /**
+     * Checks if an input in not empty, otherwise, push an error in the errors Array passed in params
+     * @param input {HTMLInputElement}
+     * @param errors {Array}
+     * @returns {boolean}
+     */
     static noEmptyInput(input, errors){
         if(this.checkIfEmpty(input)){
-            const error = Utilities.error(input, 'Merci de spécifier une valeur')
-            errors.push(error);
+            errors.push(Utilities.error(input, 'Merci de spécifier une valeur'));
             return false
         } else {
             return true;
+        }
+    }
+
+    /**
+     * Checks if an input element contains only numeric character.
+     * If options.stats is set to true, return an object containing result as result.result and stats at results.stats
+     * @param input {HTMLInputElement}
+     * @param options {Object || null}
+     * @returns {boolean}
+     */
+    static checkIfNum(input, options){
+        const arr = input.value.split('');
+        const result = {
+            result: true,
+            stats: {
+                num: 0,
+                others: 0
+            }
+
+        }
+        arr.forEach(elem => {
+            if(isNaN(Number(elem))){
+                result.others ++;
+                result.result = false;
+            } else {
+                result.num ++;
+            }
+        })
+
+        return (options && options.stats === true) ? result : result.result;
+    }
+
+    /**
+     * Checks if an input has a numeric only value, otherwise, generates an error in the array
+     * @param input
+     * @param errors
+     * @returns {boolean}
+     */
+    static numOnlyInput(input, errors){
+        if(this.checkIfNum(input, {stats: false}) === false){
+            errors.push(Utilities.error(input, "Ce champs n'accepte que des nombres"));
+            return false
+        } else {
+            return true
+        }
+    }
+
+    /**
+     * Checks if the input values contains only numeric character. If it does, checks if values is long exactly 5 characters long.
+     * @param input {HTMLInputElement}
+     * @returns {boolean|boolean}
+     */
+    static isPostCode(input){
+        const isNum = this.checkIfNum(input, {stats: false});
+        return (isNum) ? input.value.length === 5 : false;
+    }
+
+    /**
+     * Checks if the input values contains only numeric character and long as exactly 5 characters. if false, push an error in the errors array
+     * @param input {HTMLInputElement}
+     * @param errors {Array}
+     * @returns {boolean}
+     */
+    static postCodeOnly(input, errors){
+        if (this.isPostCode(input)){
+            return true
+        } else {
+            if(this.hasError(input, errors) === false) errors.push(Utilities.error(input, "Veuillez spécifier un code postal valide"));
+            return false
         }
     }
 
@@ -107,4 +186,8 @@ class ValidationForm{
 
 }
 
+// Comment on node
 export default ValidationForm;
+/* Uncomment on node
+module.exports = ValidationForm
+ */

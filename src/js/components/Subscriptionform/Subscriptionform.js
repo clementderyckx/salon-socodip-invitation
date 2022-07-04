@@ -1,10 +1,10 @@
 // TODO :
-// Select Input avec une premiére selection vide.
+// Valid phoneNumber as other than onlyNum input but French number ValidNumber
 
 import React from "react";
 import './subscriptionForm.css';
-import Input from "../form/Input";
-import SelectInput from "../form/SelectInput";
+import Input from "../Form/Input";
+import SelectInput from "../Form/SelectInput";
 import Contact from "../../classes/Contact";
 import DownloadInvitationButton from "../DownloadInvitationButton";
 import ValidationForm from "../../classes/ValidationForm";
@@ -20,7 +20,9 @@ class SubscriptionForm extends React.Component{
             email: '',
             phone: '',
             city: '',
-            department: '',
+            // delete or manage on posting
+            // department: '',
+            postCode: '',
             isPresent: 'false',
         }
 
@@ -75,12 +77,13 @@ class SubscriptionForm extends React.Component{
             company: document.querySelector('form[name="subscription-form"] input[name="company"]'),
             email: document.querySelector('form[name="subscription-form"] input[name="email"]'),
             phone: document.querySelector('form[name="subscription-form"] input[name="phone"]'),
-            department: document.querySelector('form[name="subscription-form"] select[name="department"]'),
+            // department: document.querySelector('Form[name="subscription-form"] select[name="department"]'),
+            postCode: document.querySelector('form[name="subscription-form"] input[name="postCode"]')
         }
     }
 
     /**
-     * Returns an array containing errors of the subscription form
+     * Returns an array containing errors of the subscription Form
      * @returns {[{error}]}
      */
     getFormErrors(){
@@ -100,6 +103,15 @@ class SubscriptionForm extends React.Component{
 
         // Check if the email value is right
         ValidationForm.validEmailInput(inputs.email, errors);
+
+        // Check if numeric inputs respect numeric only characters value
+        ValidationForm.postCodeOnly(inputs.postCode, errors)
+        ValidationForm.numOnlyInput(inputs.phone, errors);
+
+        console.log(errors)
+
+        // Cheks if phone inputs respects french phoneNumber Values
+
 
         return errors;
     }
@@ -186,11 +198,10 @@ class SubscriptionForm extends React.Component{
                     <div className="form-group">
                         <Input type="phone" label="N° de téléphone :" name="phone" value={this.state.phone} handleChange={this.handleChange}/>
 
-                        {/*<TextInput label="Ville :" name="city" value={this.state.company} handleChange={this.handleChange} />*/}
-
-                        <SelectInput position="end" label="department" name="department" value={this.state.department} onChange={this.handleChange}>
-                            {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}
-                        </SelectInput>
+                        <Input type="number" label="Code Postal" name="postCode" value={this.state.postCode}/>
+                        {/*<SelectInput position="end" label="department" name="department" value={this.state.department} onChange={this.handleChange}>*/}
+                        {/*    {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}*/}
+                        {/*</SelectInput>*/}
                     </div>
 
 

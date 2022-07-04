@@ -28,4 +28,8 @@ class Utilities {
 
 }
 
+// Comment on node
 export default Utilities
+/* Uncomment on node
+module.exports = Utilities
+ */

@@ -26,7 +26,7 @@ class SelectInput extends React.Component{
 
     render() {
         const options = this.getOptionsElements();
-        const elementClassName = (this.position === "end") ? "form-label flex-end" : "form-label";
+        const elementClassName = (this.position === "end") ? "Form-label flex-end" : "Form-label";
         return (
             <label htmlFor={this.name} className={elementClassName}>
                 <span className="label-text">{this.label}</span>
