@@ -1,12 +1,10 @@
 import React from "react";
 import './form.css'
 import SubscriptionForm from "../../components/Subscriptionform/Subscriptionform";
-import FormSubtitle from "../../components/Form/FormSubtitle";
 import Footer from "../../components/Footer/Footer";
-import SubmitValidationMessage from "../../components/SubmitValidationMessage/SubmitValidationMessage";
+import SubmitValidationMessage from "../../components/Subscriptionform/SubmitValidationMessage/SubmitValidationMessage";
 import {Fragment} from "react";
-import DownloadInvitationButton from "../../components/DownloadInvitationButton";
-import Utils from "../../Utils";
+import Utils from "../../classes/Utils";
 
 class Form extends React.Component {
 
@@ -14,10 +12,8 @@ class Form extends React.Component {
         super(props);
 
         this.state= {
-            title: "Inscrivez vous à notre salon",
             submitted: false,
             error: 0,
-            imgFilename: '',
             response: '',
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,17 +21,15 @@ class Form extends React.Component {
     }
 
     handleSubmit(value, res){
-        const filename = `${res.contact.company}-${res.contact.lastname}-${res.contact.firstname}.svg`;
         this.setState({submitted: value})
         if(value === true && res.response === 200) {
-            this.setState({title: "Votre inscription à bien été prise en compte", response: 200 , imgFilename: Utils.clearString(filename), contact: res.contact})
+            this.setState({response: 200, contact: res.contact})
         } else if(res.response === 400){
-            this.setState({response: 400, error: 1, imgFilename: Utils.clearString(filename), contact: res.contact})
+            this.setState({response: 400, error: 1, contact: res.contact})
         }
         else {
             this.setState({error: 2})
         }
-        // setTimeout(() => console.log(this.state.submitted, this.state.imgFilename, this.state.title), 500)
     }
 
     subtitle(){
@@ -53,7 +47,7 @@ class Form extends React.Component {
         return (
             <Fragment>
                 <header className="title">
-                    <h1>{this.state.title}</h1>
+                    <h1>Inscrivez vous à notre salon</h1>
                     <div className="subtitle">
                         <p className="date">Jeudi 15 Septembre 2022 à Gauchy (02)</p>
                         <p className="hours">à partir de 8h30</p>

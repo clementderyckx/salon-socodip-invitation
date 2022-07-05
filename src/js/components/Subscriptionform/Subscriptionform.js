@@ -1,12 +1,12 @@
 // TODO :
 // Valid phoneNumber as other than onlyNum input but French number ValidNumber
+// Move css properties due to Input and select inputs
 
 import React from "react";
 import './subscriptionForm.css';
-import Input from "../Form/Input";
-import SelectInput from "../Form/SelectInput";
+import Input from "../HTML/Input/Input";
+// import SelectInput from "../Form/SelectInput";
 import Contact from "../../classes/Contact";
-import DownloadInvitationButton from "../DownloadInvitationButton";
 import ValidationForm from "../../classes/ValidationForm";
 
 class SubscriptionForm extends React.Component{
@@ -35,11 +35,9 @@ class SubscriptionForm extends React.Component{
     handleChange(event){
         event.preventDefault();
         const name = event.target.name;
-        console.log(this.state['postCode']);
         this.setState({
             [name]: event.target.value,
         });
-        console.log(this.state)
     }
 
     async postContact(contact){
@@ -157,8 +155,6 @@ class SubscriptionForm extends React.Component{
         const isValid = this.validateForm();
         if (isValid){
             const contact = new Contact(this.state);
-            console.log('contact : ');
-            console.log(contact);
             const result = this.postContact(contact)
                 .then(postResult => {
                     if(postResult === 200) {
