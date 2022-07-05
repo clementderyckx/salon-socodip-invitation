@@ -22,7 +22,7 @@ class SubscriptionForm extends React.Component{
             city: '',
             // delete or manage on posting
             // department: '',
-            postCode: '',
+            postCode: 0,
             isPresent: 'false',
         }
 
@@ -35,9 +35,11 @@ class SubscriptionForm extends React.Component{
     handleChange(event){
         event.preventDefault();
         const name = event.target.name;
+        console.log(this.state['postCode']);
         this.setState({
-            [name]: event.target.value
+            [name]: event.target.value,
         });
+        console.log(this.state)
     }
 
     async postContact(contact){
@@ -78,7 +80,7 @@ class SubscriptionForm extends React.Component{
             email: document.querySelector('form[name="subscription-form"] input[name="email"]'),
             phone: document.querySelector('form[name="subscription-form"] input[name="phone"]'),
             // department: document.querySelector('Form[name="subscription-form"] select[name="department"]'),
-            postCode: document.querySelector('form[name="subscription-form"] input[name="postCode"]')
+            postCode: document.querySelector('form[name="subscription-form"] input[name="postCode"]'),
         }
     }
 
@@ -153,10 +155,10 @@ class SubscriptionForm extends React.Component{
     submit(event){
         event.preventDefault();
         const isValid = this.validateForm();
-        console.log(`isValid : ${isValid}`);
         if (isValid){
-            console.log(`Form is Valid !!`)
             const contact = new Contact(this.state);
+            console.log('contact : ');
+            console.log(contact);
             const result = this.postContact(contact)
                 .then(postResult => {
                     if(postResult === 200) {
@@ -198,7 +200,7 @@ class SubscriptionForm extends React.Component{
                 <div className="form-group">
                     <Input type="phone" label="N° de téléphone :" name="phone" value={this.state.phone} handleChange={this.handleChange}/>
 
-                    <Input type="number" label="Code Postal" name="postCode" value={this.state.postCode}/>
+                    <Input type="number" label="Code Postal" name="postCode" value={this.state.postCode} handleChange={this.handleChange}/>
                     {/*<SelectInput position="end" label="department" name="department" value={this.state.department} onChange={this.handleChange}>*/}
                     {/*    {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}*/}
                     {/*</SelectInput>*/}
