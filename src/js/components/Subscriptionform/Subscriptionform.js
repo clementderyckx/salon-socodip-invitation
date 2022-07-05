@@ -41,7 +41,10 @@ class SubscriptionForm extends React.Component{
     }
 
     async postContact(contact){
-        return fetch('http://localhost:8000/salon/contacts/create/', {method: 'POST',
+        const apiUrl = 'https://qrcode-checklist.herokuapp.com';
+        // const apiUrl = 'http://localhost:8000';
+        console.log(`api url -> ${apiUrl}`)
+        return fetch(`${apiUrl}/salon/contacts/create/`, {method: 'POST',
             headers: { 'Accept': 'application/json', 'Content-type': 'application/json' },
             body: JSON.stringify(contact)})
             .then((res) => res.json() )
