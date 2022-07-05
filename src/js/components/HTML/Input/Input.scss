@@ -13,6 +13,9 @@
   color: $purple;
   position: relative;
   top: 25px;
+  @media screen and (max-width: 445px) {
+    font-size: 14px;
+  }
 }
 
 .form-input{
@@ -23,8 +26,7 @@
   border-bottom: 1px solid $purple;
   outline: none;
   background-color: transparent;
-  font-size: 16px;
-
+  font-size: 14px;
 }
 
 // Input animation on focus

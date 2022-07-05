@@ -9,6 +9,11 @@ select.form-input .form-label {
   position: relative;
   z-index: 1;
 }
+@media screen and (max-width: 768px) {
+  select.form-input .form-label {
+    margin-bottom: 15px;
+  }
+}
 select.form-input .label-text {
   display: block;
   color: #a00f9f;
@@ -23,8 +28,9 @@ select.form-input .form-input {
   border-bottom: 1px solid #a00f9f;
   outline: none;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 14px;
   z-index: 10;
+  border-radius: 0px;
 }
 select.form-input:focus {
   outline: none;

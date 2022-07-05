@@ -23,7 +23,6 @@ function SubmitValidationMessage({submitted, error, response}){
     let title = "";
     let signature = ""
 
-    // let signature = "";
     if(submitted === true){
         title = getValidationTitle('Votre inscription a bien été prise en compte');
         message = (
@@ -34,17 +33,17 @@ function SubmitValidationMessage({submitted, error, response}){
             Le site étant en pleine nature, n’oubliez de prendre des chaussures adéquates ! <br/>
             Pour tous renseignements complémentaires, vous pouvez nous joindre au <TelToLink phone={contacts.socodip.tel}/></p>
         )
-            signature = <Signature />;
+        signature = <Signature />;
 
 
     } else if(response === 400) {
         title = getValidationTitle("Le contact est déjà inscrit au salon");
         message = <p className="submit-validation-message">Une erreur est survenue car le contact est déja inscrit au salon. Pour recevoir des informations concernant le salon, vous pouvez nous joindre au <TelToLink phone={contacts.socodip.tel} /> ou par mail <MailToLink mail={contacts.socodip.mail}/> </p>
-            signature = <Signature />;
+        signature = <Signature />;
 
     } else if(submitted === false && error === 1){
         message = <p>Une erreur est survenue lors de votre inscription au salon. Merci de bien vouloir resoumettre votre formulaire</p>
-            signature = <Signature />;
+        signature = <Signature />;
 
     }
 
