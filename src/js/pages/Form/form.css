@@ -26,14 +26,79 @@ body {
   font-weight: bold;
   font-family: "Aileron SemiBold", sans-serif;
 }
+@media screen and (max-width: 980px) {
+  .title h1 {
+    font-size: 48px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .title h1 {
+    font-size: 38px;
+  }
+}
+@media screen and (max-width: 545px) {
+  .title h1 {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 445px) {
+  .title h1 {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .title h1 {
+    font-size: 24px;
+  }
+}
 
 .subtitle {
   font-size: 36px;
   font-family: "Aileron", sans-serif;
 }
+@media screen and (max-width: 980px) {
+  .subtitle {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .subtitle {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 545px) {
+  .subtitle {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .subtitle {
+    font-size: 18px;
+  }
+}
 .subtitle .hours {
   font-family: "Aileron Light", sans-serif;
   font-size: 34px;
+}
+@media screen and (max-width: 980px) {
+  .subtitle .hours {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .subtitle .hours {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 545px) {
+  .subtitle .hours {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .subtitle .hours {
+    font-size: 16px;
+  }
 }
 
 .success_infos {
@@ -63,6 +128,53 @@ body {
   padding: 50px 60px 40px 60px;
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+@media screen and (max-width: 1820px) {
+  .content-container {
+    width: 65%;
+  }
+}
+@media screen and (max-width: 1575px) {
+  .content-container {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1575px) {
+  .content-container {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 1575px) {
+  .content-container {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 1230px) {
+  .content-container {
+    width: 85%;
+    padding: 50px 50px 40px 50px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .content-container {
+    width: 90%;
+    padding: 50px 40px 40px 40px;
+  }
+}
+@media screen and (max-width: 810px) {
+  .content-container {
+    width: 90%;
+    padding: 50px 35px 40px 35px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .content-container {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    margin: 0 auto;
+    padding: 35px 20px 30px 20px;
+  }
 }
 
 /*# sourceMappingURL=form.css.map */

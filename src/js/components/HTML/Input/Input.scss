@@ -3,6 +3,9 @@
 .form-label{
   width: 90%;
   position: relative;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+  }
 }
 
 .label-text{
@@ -21,6 +24,7 @@
   outline: none;
   background-color: transparent;
   font-size: 16px;
+
 }
 
 // Input animation on focus
