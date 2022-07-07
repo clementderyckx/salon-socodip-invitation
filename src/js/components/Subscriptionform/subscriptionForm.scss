@@ -7,11 +7,9 @@
 // Subscription Form global styles
 
 .form-container{
-  //@include contentContainer();
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
 }
 
 form{

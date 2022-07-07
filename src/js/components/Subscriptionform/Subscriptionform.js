@@ -1,7 +1,3 @@
-// TODO :
-// Valid phoneNumber as other than onlyNum input but French number ValidNumber
-// Move css properties due to Input and select inputs
-
 import React from "react";
 import './subscriptionForm.css';
 import Input from "../HTML/Input/Input";
@@ -14,6 +10,7 @@ class SubscriptionForm extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            inSubmit: false,
             firstname: '',
             lastname: '',
             company: '',
@@ -42,6 +39,7 @@ class SubscriptionForm extends React.Component{
 
     async postContact(contact){
         const apiUrl = 'https://qrcode-checklist.herokuapp.com';
+        // const apiUrl = 'https://app.salon.socodip.fr';
         // const apiUrl = 'http://localhost:8000';
         console.log(`api url -> ${apiUrl}`)
         return fetch(`${apiUrl}/salon/contacts/create/`, {method: 'POST',
@@ -157,6 +155,7 @@ class SubscriptionForm extends React.Component{
         event.preventDefault();
         const isValid = this.validateForm();
         if (isValid){
+            this.setState({ inSubmit: true })
             const contact = new Contact(this.state);
             const result = this.postContact(contact)
                 .then(postResult => {
@@ -200,15 +199,14 @@ class SubscriptionForm extends React.Component{
                     <Input type="phone" label="N° de téléphone :" name="phone" value={this.state.phone} handleChange={this.handleChange}/>
 
                     <Input type="number" label="Code Postal" name="postCode" value={this.state.postCode} handleChange={this.handleChange}/>
-                    {/*<SelectInput position="end" label="department" name="department" value={this.state.department} onChange={this.handleChange}>*/}
-                    {/*    {["59 - Nord", "62 - Pas-de-Calais", "80 - Sommes", "02 - Aisnes"]}*/}
-                    {/*</SelectInput>*/}
                 </div>
 
 
                 <div className="form-submit">
                     <input type="submit" value='Envoyer'/>
                 </div>
+
+                {(this.state.inSubmit === true) ? <p className="on-submit-message" align="center">L'inscription est en cours d'enregistrement ...</p> : null}
 
             </form>
 

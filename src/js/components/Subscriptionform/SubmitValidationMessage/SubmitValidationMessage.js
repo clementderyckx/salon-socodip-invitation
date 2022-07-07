@@ -27,7 +27,7 @@ function SubmitValidationMessage({submitted, error, response}){
         title = getValidationTitle('Votre inscription a bien été prise en compte');
         message = (
             <p className="submit-validation-message">Madame, Monsieur, <br/>
-            Vous recevrez dans les prochains jours votre badge d’entrée, n’oubliez pas de l’IMPRIMER ! <br/>
+            Vous recevrez sous peu par mail votre badge d’entrée, n’oubliez pas de l’IMPRIMER ! <br/>
             Toute l’équipe est impatiente de vous retrouver le Jeudi 15 septembre dès 8h30 à Gauchy <br/>
             RDV au Complexe Sportif Robert Barran , Parc Jean Bouin, Rue De Picardie, Gauchy 02430 <br/>
             Le site étant en pleine nature, n’oubliez de prendre des chaussures adéquates ! <br/>
