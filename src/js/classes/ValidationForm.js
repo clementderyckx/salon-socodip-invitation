@@ -1,5 +1,6 @@
 // Comment on node
 import Utilities from "./Utilities";
+import PhoneValidation from "./PhoneValidation";
 /* Uncomment on node
 const Utilities = require('./Utilities');
  */
@@ -181,6 +182,16 @@ class ValidationForm{
         } else {
             if(this.hasError(input, errors) === false) errors.push(Utilities.error(input, "La valeur doit être un email valide"));
             return Utilities.response(isValid, `An error message has been catch for non matching regex ${input.name}`);
+        }
+    }
+
+    static validPhoneInput(input, errors){
+        const isValid = PhoneValidation.validateNumber(input.value);
+        if(isValid.status){
+            return isValid;
+        } else {
+            if(this.hasError(input,errors) === false) errors.push(Utilities.error(input, "La valeur doit être un numéro de téléphone valide"));
+            return isValid;
         }
     }
 

@@ -109,7 +109,7 @@ class SubscriptionForm extends React.Component{
 
         // Check if numeric inputs respect numeric only characters value
         ValidationForm.postCodeOnly(inputs.postCode, errors)
-        ValidationForm.numOnlyInput(inputs.phone, errors);
+        ValidationForm.validPhoneInput(inputs.phone, errors);
 
         console.log(errors)
 
