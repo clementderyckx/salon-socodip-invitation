@@ -165,7 +165,7 @@ class ValidationForm{
      * @returns {boolean}
      */
     static validEmail(input){
-        const mailRegex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z]){2,8}$/;
+        const mailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         return mailRegex.test(input.value);
     }
 
